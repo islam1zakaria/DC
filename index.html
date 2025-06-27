@@ -1,218 +1,94 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-<!-- Language Switcher (fixed at top, only on home/hero section) -->
-<style>
-  #language-switcher {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 9999;
-    background: #fff;
-    border-bottom-left-radius: 8px;
-    box-shadow: 0 2px 8px rgba(30,144,255,0.08);
-    padding: 8px 12px 8px 8px;
-    border-bottom: 1px solid #e0e0e0;
-    border-left: 1px solid #e0e0e0;
-    transition: opacity 0.2s;
-  }
-  #language-switcher.hide {
-    opacity: 0;
-    pointer-events: none;
-    }
-    /* End language switcher style */
-  </style>
-  <!-- Language Switcher -->
-  <div id="language-switcher">
-    <button id="en-btn" class="btn btn-sm btn-primary" style="margin-left:4px;">English</button>
-    <button id="ar-btn" class="btn btn-sm btn-outline-primary">العربية</button>
-  </div>
-  <script>
-    // Simple language switcher: toggles dir/lang and swaps text content
-    const translations = {
-      en: {
-        home: "Home",
-        about: "About",
-        resume: "Resume",
-        portfolio: "Certificates",
-        services: "Services",
-        contact: "Project Documentation",
-        heroTitle: "islam <span class=\"accent-text\"> zakareya</span>",
-        heroJob: "Document Controller",
-        heroLead: "I'm a <span class=\"typed\" data-typed-items=\"Document Controller, Data Entry Specialist, Accountant, Programmer\"></span>",
-        heroDesc: "Expert in managing and organizing technical documents, data entry, accounting, and programming with accuracy and professionalism.",
-        viewCerts: "View My Certifications",
-        getInTouch: "Get In Touch"
-      },
-    ar: {
-      home: "الرئيسية",
-      about: "من أنا",
-      resume: "السيرة الذاتية",
-      portfolio: "الشهادات",
-      services: "الخدمات",
-      contact: "مستند المشروع",
-      heroTitle: "اسلام <span class=\"accent-text\"> زكريا</span>",
-      heroJob: "مسؤول وثائق",
-      heroLead: "أنا <span class=\"typed\" data-typed-items=\"مسؤول وثائق، أخصائي Excel، كاتب فني، منسق إداري\"></span>",
-      heroDesc: "خبير في إدارة وتنظيم الوثائق الفنية بدقة. ماهر في Excel وWord وتنسيق المشاريع في مجالات البناء والبنية التحتية.",
-      viewCerts: "عرض الشهادات",
-      getInTouch: "Contact"
-    }
-    };
+<html lang="en">
 
-    function setLang(lang) {
-    document.documentElement.lang = lang;
-    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-    localStorage.setItem('lang', lang);
-    updateContent(lang);
-    }
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - SnapFolio Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
 
-    function updateContent(lang) {
-    // Example: update nav menu
-    document.querySelectorAll('#navmenu ul li a')[0].innerHTML = `<i class="bi bi-house-door-fill navicon"></i>${translations[lang].home}`;
-    document.querySelectorAll('#navmenu ul li a')[1].innerHTML = `<i class="bi bi-person-circle navicon"></i> ${translations[lang].about}`;
-    document.querySelectorAll('#navmenu ul li a')[2].innerHTML = `<i class="bi bi-file-earmark-person-fill navicon"></i> ${translations[lang].resume}`;
-    document.querySelectorAll('#navmenu ul li a')[3].innerHTML = `<i class="bi bi-award-fill navicon"></i> ${translations[lang].portfolio}`;
-    document.querySelectorAll('#navmenu ul li a')[4].innerHTML = `<i class="bi bi-gear-fill navicon"></i> ${translations[lang].services}`;
-    document.querySelectorAll('#navmenu ul li a')[5].innerHTML = `<i class="bi bi-file-earmark-text navicon"></i> ${translations[lang].contact}`;
-    document.querySelectorAll('#navmenu ul li a')[6].innerHTML = `<i class="bi bi-envelope-fill navicon"></i> تواصل`;
-    // Hero section
-    document.querySelector('.hero-text h1').innerHTML = translations[lang].heroTitle;
-    document.querySelector('.hero-text h2').textContent = translations[lang].heroJob;
-    document.querySelector('.hero-text .lead').innerHTML = translations[lang].heroLead;
-    document.querySelector('.hero-text .description').textContent = translations[lang].heroDesc;
-    document.querySelector('.hero-actions a.btn-primary').textContent = translations[lang].viewCerts;
-    document.querySelector('.hero-actions a.btn-outline').textContent = translations[lang].getInTouch;
-    // Switch button styles
-    document.getElementById('en-btn').className = (lang === 'en') ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline-primary';
-    document.getElementById('ar-btn').className = (lang === 'ar') ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline-primary';
-    }
+  <!-- Favicons -->
+  <link href="assets/img/compressed_imag.png" rel="icon">
+  <link href="assets/img/compressed_imag.png" rel="apple-touch-icon">
 
-    // Hide language switcher when not in hero section
-    function handleLangSwitcherVisibility() {
-    const hero = document.getElementById('hero');
-    const switcher = document.getElementById('language-switcher');
-    if (!hero || !switcher) return;
-    const heroRect = hero.getBoundingClientRect();
-    if (heroRect.bottom > 80) {
-      switcher.classList.remove('hide');
-    } else {
-      switcher.classList.add('hide');
-    }
-    }
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
-    document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('en-btn').onclick = function() { setLang('en'); };
-    document.getElementById('ar-btn').onclick = function() { setLang('ar'); };
-    let lang = localStorage.getItem('lang') || 'en';
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('lang')) lang = params.get('lang');
-    setLang(lang);
-    // Show/hide switcher only on hero section
-    handleLangSwitcherVisibility();
-    window.addEventListener('scroll', handleLangSwitcherVisibility);
-    });
-  </script>
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Index - SnapFolio Bootstrap Template</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
 
-    <!-- Favicons -->
-    <!-- Favicons -->
-    <link rel="icon" type="image/png" href="assets/img/photo_3_2025-06-19_16-06-34.jpg" sizes="32x32">
-    <link rel="icon" type="image/png" href="assets/img/photo_3_2025-06-19_16-06-34.jpg" sizes="16x16">
-    <link rel="icon" type="image/jpeg" href="assets/img/photo_3_2025-06-19_16-06-34.jpg">
-    <link rel="apple-touch-icon" href="assets/img/photo_3_2025-06-19_16-06-34.jpg">
-    <link rel="shortcut icon" href="assets/img/photo_3_2025-06-19_16-06-34.jpg">
-    <meta name="msapplication-TileImage" content="assets/img/photo_3_2025-06-19_16-06-34.jpg">
-    <meta name="theme-color" content="#1e90ff">
-    <meta name="msapplication-TileColor" content="#1e90ff">
+  <!-- =======================================================
+  * Template Name: SnapFolio
+  * Template URL: https://bootstrapmade.com/snapfolio-bootstrap-portfolio-template/
+  * Updated: Jun 13 2025 with Bootstrap v5.3.6
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<body class="index-page">
 
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-    <!-- Main CSS File -->
-    <link href="assets/css/main.css" rel="stylesheet">
-    <!-- =======================================================
-    * الموقع: سيرة إسلام زكريا خليل
-    * الوصف: معرض شهادات وخدمات توثيق ومستندات احترافية
-    * المطور: إسلام زكريا خليل
-    * آخر تحديث: يونيو 2025
-    * جميع الحقوق محفوظة © إسلام زكريا خليل
-    ======================================================== -->
-    <style>
-    /* Custom font for header and nav */
-    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
-    body, .header, .navmenu, .header-container, .social-links {
-      font-family: 'Tajawal', 'Ubuntu', 'Nunito', 'Roboto', sans-serif !important;
-    }
-    /* Custom icon style */
-    .navicon {
-      font-size: 1.5rem;
-      color: #1e90ff;
-      margin-right: 8px;
-      transition: color 0.2s;
-    }
-    .navmenu a.active .navicon,
-    .navmenu a:hover .navicon {
-      color: #ff9800;
-    }
-    /* Social icon style */
-    .social-links a {
-      margin: 0 6px;
-      font-size: 1.6rem;
-      color: #1e90ff;
-      border-radius: 50%;
-      background: #fff;
-      padding: 8px;
-      box-shadow: 0 2px 8px rgba(30,144,255,0.08);
-      transition: background 0.2s, color 0.2s;
-      border: 1px solid #e0e0e0;
-    }
-    .social-links a:hover {
-      background: #ff9800;
-      color: #fff;
-      border-color: #ff9800;
-    }
-    </style>
-  </head>
-
-  <body class="index-page">
-
-    <header id="header" class="header dark-background d-flex flex-column justify-content-center">
+  <header id="header" class="header dark-background d-flex flex-column justify-content-center">
     <i class="header-toggle d-xl-none bi bi-list"></i>
 
     <div class="header-container d-flex flex-column align-items-start">
       <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="#hero" class="active"><i class="bi bi-house-door-fill navicon"></i>الرئيسية</a></li>
-        <li><a href="#about"><i class="bi bi-person-circle navicon"></i> من أنا</a></li>
-        <li><a href="#resume"><i class="bi bi-file-earmark-person-fill navicon"></i> السيرة الذاتية</a></li>
-        <li><a href="#portfolio"><i class="bi bi-award-fill navicon"></i> الشهادات</a></li>
-        <li><a href="#services"><i class="bi bi-gear-fill navicon"></i> الخدمات</a></li>
-        <li><a href="#project-docs"><i class="bi bi-file-earmark-text navicon"></i> أنواع مستندات المشاريع</a></li>
-        <li><a href="#contact"><i class="bi bi-envelope-fill navicon"></i> Contact</a></li>
-      </ul>
-  <div class="social-links text-center" style="gap: 10px; display: flex; justify-content: center; margin-top: 16px;">
-    <a href="https://twitter.com/eslam_zakaria_" target="_blank" class="twitter"><i class="bi bi-twitter-x"></i></a>
-    <a href="https://facebook.com/eslam.zakaria.khalil" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
-    <a href="https://instagram.com/islam_zakareya_khalel" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
-    <a href="https://wa.me/201555705394" target="_blank" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
-    <a href="https://www.linkedin.com/in/islamzakareyakhalel" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <ul>
+          <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
+          <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
+          <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+          <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
+          <li><a href="#services"><i class="bi bi-hdd-stack navicon"></i> Services</a></li>
+          <li class="dropdown">
+            <a href="#"><i class="bi bi-menu-button navicon"></i> <span>Dropdown</span> <i
+                class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown">
+                <a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="social-links text-center">
+        <a href="https://x.com/islamzakareya" target="_blank" class="twitter"><i class="bi bi-twitter-x"></i></a>
+        <a href="https://facebook.com/islamzakareya.khalel" target="_blank" class="facebook"><i
+            class="bi bi-facebook"></i></a>
+        <a href="https://instagram.com/islamzakareya.khalel" target="_blank" class="instagram"><i
+            class="bi bi-instagram"></i></a>
+        <a href="https://wa.me/201555705394" target="_blank" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/in/islamzakareya" target="_blank" class="linkedin"><i
+            class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+  </header>
+
   </div>
-</div>
 
   </header>
 
@@ -231,183 +107,54 @@
         <div class="container">
           <div class="row align-items-center">
 
-            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-              <div class="hero-text">
-             <h1>islam <span class="accent-text"> zakareya</span></h1>
+            <div class="col-lg-6 d-flex align-items-center justify-content-center" data-aos="fade-right" data-aos-delay="100">
+              <div class="hero-text text-center w-100">
+                <h1>islam <span class="accent-text"> zakareya</span></h1>
+                <h2>Document Controller</h2>
+                <p class="lead">I'm a <span class="typed"
+                    data-typed-items="Document Controller, Excel Specialist, Technical Typist, Administrative Coordinator"></span>
+                </p>
+                <p class="description">Experienced in managing and organizing technical documentation with precision.
+                  Skilled in Excel, Word, and project coordination across construction and infrastructure projects.</p>
 
-<h2>Document Controller</h2>
-<p class="lead">I'm a <span class="typed" data-typed-items="Document Controller, Data Entry Specialist, Accountant, Programmer"></span></p>
-<p class="description">Expert in managing and organizing technical documents, data entry, accounting, and programming with accuracy and professionalism.</p>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    if (window.Typed && document.querySelector('.typed')) {
-      new Typed('.typed', {
-        strings: document.querySelector('.typed').getAttribute('data-typed-items').split(','),
-        typeSpeed: 60,
-        backSpeed: 35,
-        backDelay: 1200,
-        loop: true
-      });
-    }
-  });
-</script>
+                <div class="hero-actions">
+                  <a href="#portfolio" class="btn btn-primary">View My Certifications</a>
+                  <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
 
-<div class="hero-actions">
-  <a href="#portfolio" class="btn btn-primary">View My Certifications</a>
-  <a href="#contact" class="btn btn-outline">Get In Touch</a>
-</div>
-
-<div class="social-links text-center d-flex justify-content-center align-items-center" style="gap: 16px; margin: 32px auto 0 auto; position: relative;">
-  <a href="https://twitter.com/eslam_zakaria_" target="_blank" class="twitter"><i class="bi bi-twitter-x"></i></a>
-  <a href="https://facebook.com/eslam.zakaria.khalil" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
-  <a href="https://instagram.com/islam_zakareya_khalel" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
-  <a href="https://wa.me/201555705394" target="_blank" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
-  <a href="https://www.linkedin.com/in/islamzakareyakhalel" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
-</div>
-<style>
-  .social-links {
-    justify-content: center !important;
-    align-items: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-</style>
-
-        </div>
-            </div>
-
-            <div class="col-lg-6 d-flex align-items-end justify-content-center" data-aos="fade-left" data-aos-delay="900" style="min-height: 420px;">
-              <div class="hero-visual w-100 position-relative" style="z-index:2; display: flex; align-items: flex-end; justify-content: center;">
-          <!-- دوائر زرقاء متحركة في الخلف -->
-          <div class="blue-circle-1"></div>
-          <div class="blue-circle-2"></div>
-          <!-- دائرة جديدة بحركة مختلفة -->
-          <div class="blue-circle-3"></div>
-          <!-- المربع الأزرق في الخلف وتحت الصورة مباشرة -->
-          <div class="blue-bg-square"
-            style="
-              position: absolute;
-              left: 50%;
-              bottom: 0;
-              transform: translateX(-50%);
-              width: 320px;
-              height: 320px;
-              background: linear-gradient(135deg, #1e90ff 80%, #0a1a3a 100%);
-              border-radius: 32px;
-              z-index:1;
-              box-shadow: 0 16px 48px #1e90ff66, 0 2px 24px #0a1a3a33;
-              opacity: 0.92;
-              filter: blur(0.5px);
-            ">
-          </div>
-          <!-- الصورة الشخصية صغيرة وثابتة -->
-          <div class="profile-container mx-auto" style="max-width: 180px; min-width: 300px; min-height: 180px; position: relative; z-index:2; display: flex; align-items: flex-end; justify-content: center;">
-            <img src="assets/img/profile/compressed_imag.webp" alt="Islam Zakareya Khalel" class="profile-image"
-              style="width: 300px; height: 350px; object-fit: cover; border-radius: 18px; box-shadow: 0 4px 18px #0010f7; display: block; position: relative; z-index:2; background: #fff;">
-          </div>
-              </div>
-            </div>
-        <style>
-          /* دوائر زرقاء متحركة */
-          .blue-circle-1, .blue-circle-2, .blue-circle-3 {
-            position: absolute;
-            border-radius: 50%;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.18;
-            filter: blur(1.5px);
-            transition: opacity 0.3s;
-          }
-          .blue-circle-1 {
-            width: 180px; height: 180px;
-            left: 10%; bottom: 40px;
-            background: radial-gradient(circle, #1e90ff 60%, #0a1a3a 100%);
-            animation: floatCircle1 5.5s ease-in-out infinite alternate;
-          }
-          .blue-circle-2 {
-            width: 120px; height: 120px;
-            right: 12%; bottom: 90px;
-            background: radial-gradient(circle, #1e90ff 70%, #0a1a3a 100%);
-            animation: floatCircle2 7s ease-in-out infinite alternate;
-          }
-          /* الدائرة الجديدة بحركة مختلفة */
-          .blue-circle-3 {
-            width: 90px; height: 90px;
-            left: 55%; bottom: 180px;
-            background: radial-gradient(circle, #1e90ff 80%, #0a1a3a 100%);
-            opacity: 0.13;
-            animation: rotateCircle3 8s linear infinite;
-          }
-          @keyframes floatCircle1 {
-            0% { transform: translateY(0) scale(1);}
-            100% { transform: translateY(-30px) scale(1.08);}
-          }
-          @keyframes floatCircle2 {
-            0% { transform: translateY(0) scale(1);}
-            100% { transform: translateY(24px) scale(0.95);}
-          }
-          @keyframes rotateCircle3 {
-            0% { transform: rotate(0deg) translateY(0);}
-            50% { transform: rotate(180deg) translateY(-18px);}
-            100% { transform: rotate(360deg) translateY(0);}
-          }
-          @media (max-width: 991px) {
-            .blue-circle-1 { width: 110px; height: 110px; left: 2%; bottom: 20px;}
-            .blue-circle-2 { width: 70px; height: 70px; right: 2%; bottom: 40px;}
-            .blue-circle-3 { width: 50px; height: 50px; left: 60%; bottom: 100px;}
-          }
-        </style>
-                    
-                  </div>
+                <div class="social-links d-flex justify-content-center mt-3">
+                  <a href="https://twitter.com/eslam_zakaria_" target="_blank" class="twitter mx-2"><i
+                      class="bi bi-twitter-x"></i></a>
+                  <a href="https://facebook.com/eslam.zakaria.khalil" target="_blank" class="facebook mx-2"><i
+                      class="bi bi-facebook"></i></a>
+                  <a href="https://instagram.com/islam_zakareya_khalel" target="_blank" class="instagram mx-2"><i
+                      class="bi bi-instagram"></i></a>
+                  <a href="https://wa.me/201555705394" target="_blank" class="whatsapp mx-2"><i
+                      class="bi bi-whatsapp"></i></a>
+                  <a href="https://www.linkedin.com/in/islamzakareyakhalel" target="_blank" class="linkedin mx-2"><i
+                      class="bi bi-linkedin"></i></a>
                 </div>
               </div>
-              <style>
-                /* تأكد أن الصورة فوق المربع الأزرق */
-                .hero-visual {
-                  display: flex;
-                  align-items: flex-end;
-                  justify-content: center;
-                  min-height: 380px;
-                }
-                .profile-container {
-                  z-index: 2;
-                  position: relative;
-                  width: 100%;
-                  max-width: 320px;
-                  min-width: 220px;
-                  min-height: 320px;
-                  display: flex;
-                  align-items: flex-end;
-                  justify-content: center;
-                }
-                .profile-container .profile-image {
-                  position: relative;
-                  z-index: 2;
-                }
-                .blue-bg-square {
-                  z-index: 1;
-                  transition: box-shadow 0.2s;
-                }
-                @media (max-width: 400px) {
-                  .profile-container, .blue-bg-square {
-                    min-width: 180px !important;
-                    min-height: 180px !important;
-                    width: 100% !important;
-                    height: 100% !important;
-                  }
-                }
-              </style>
             </div>
-      </div>
 
-          </div>
-        </div>
-      </div>
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+              <div class="hero-visual">
+                <div class="profile-container">
+                  <div class="profile-background"></div>
+                  <img src="assets/img/profile/compressed_imag.webp" alt="Alexander Chen" class="profile-image">
+                  <div class="floating-elements">
+                    <div class="floating-icon icon-1"><i class="bi bi-palette"></i></div>
+                    <div class="floating-icon icon-2"><i class="bi bi-code-slash"></i></div>
+                    <div class="floating-icon icon-3"><i class="bi bi-lightbulb"></i></div>
+                    <div class="floating-icon icon-4"><i class="bi bi-graph-up"></i></div>
+                  </div>
 
-    </section>
-    <!-- /Hero Section -->
+                </div>
+              </div>
+            </div>
 
-<!-- About Section -->
+
+      <!-- About Section -->
 <section id="about" class="about section">
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
